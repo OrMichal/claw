@@ -1,6 +1,9 @@
 use crate::models::HtmlElement;
 
-pub struct Link;
+pub struct Link {
+    pub classes: Option<String>,
+    pub id: Option<String>
+}
 
 impl HtmlElement for Link {
     fn get_html(&self) -> String {
@@ -11,11 +14,17 @@ impl HtmlElement for Link {
         "link"
     }
 
-    fn get_classes(&self) -> Option<String> {
-        None
+    fn get_classes(&self) -> Option<&String> {
+        match &self.classes {
+            Some(classes) => Some(classes),
+            None => None
+        }
     }
 
-    fn get_id(&self) -> Option<String> {
-        None
+    fn get_id(&self) -> Option<&String> {
+        match &self.id {
+            Some(id) => Some(id),
+            None => None
+        }
     }
 }
